@@ -1,6 +1,6 @@
-from preprocessing import preprocess
-from stop_words_removal import remove_stopwords
-from lemmatizer import lemmatize
+from preprocesing.preprocessing import preprocess
+from preprocesing.stop_words_removal import remove_stopwords
+from preprocesing.lemmatizer import lemmatize
 
 while True:
     user_input = input("You: ")
