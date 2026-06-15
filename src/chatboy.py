@@ -1,3 +1,6 @@
+from preprocessing import preprocess
+from stop_words_removal import remove_stopwords
+
 while True:
     user_input = input("You: ")
 
@@ -5,4 +8,8 @@ while True:
         print("KDS: GoodBye!, See you Soon")
         break
 
-    print("KDS:", user_input)
+    lower_case_text_tokenize = preprocess(user_input)
+    rm_stop_words = remove_stopwords(lower_case_text_tokenize)
+
+    print("After Lowering and tokenized : ", lower_case_text_tokenize)
+    print("Removed: ", rm_stop_words)
