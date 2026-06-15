@@ -1,480 +1,385 @@
-# AI ChatBot Project (NLP + Machine Learning + AI + DevOps)
+# AI_CHAT_BOT 🚀
 
-## Project Goal
+## Project Overview
 
-Build an intelligent chatbot that demonstrates:
+AI_CHAT_BOT is a Hybrid NLP + Machine Learning Chatbot built using Python.
+
+The project demonstrates:
 
 * Natural Language Processing (NLP)
-* Machine Learning (ML)
+* Machine Learning
 * Intent Classification
-* AI Integration (OpenAI/Gemini)
-* DevOps Deployment (Docker, Jenkins, AWS ECS)
+* TF-IDF Vectorization
+* Naive Bayes Classification
+* Confidence Scoring
+* Response Generation
+
+Future enhancements include:
+
+* OpenAI/Gemini Integration
+* SQLite Database
+* Docker Containerization
+* Jenkins CI/CD
+* AWS ECS Deployment
 
 ---
 
-# Current Project Structure
+# Project Architecture
+
+```text
+User
+ ↓
+Input
+ ↓
+NLP Pipeline
+ ├─ Lowercase
+ ├─ Tokenization
+ ├─ Stopword Removal
+ └─ Lemmatization
+ ↓
+TF-IDF
+ ↓
+Naive Bayes
+ ↓
+Confidence Score
+ ↓
+Intent Detection
+ ↓
+Response Engine
+ ↓
+Bot Response
+```
+
+---
+
+# Project Structure
 
 ```text
 AI_CHAT_BOT/
 │
 ├── data/
+│   ├── intents.csv
 │   └── sentences.txt
 │
 ├── docs/
 │
 ├── models/
+│   ├── model.pkl
+│   ├── tfidf.pkl
+│   └── label_encoder.pkl
 │
 ├── src/
 │   ├── chatbot.py
+│   ├── train.py
+│   ├── predict.py
 │   ├── preprocessing.py
 │   ├── stop_words_removal.py
 │   ├── lemmatizer.py
-│   └── vectorizer.py
+│   ├── vectorizer.py
+│   └── response_engine.py
 │
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── Architecture_diagram.png
 ```
 
 ---
 
-# Project Phases
+# Technologies Used
 
-## Phase 1: Project Setup
+## Programming Language
 
-### Completed
+* Python
 
-* Created GitHub repository
-* Cloned repository into VS Code
-* Created project folder structure
-* Configured Python environment
+## NLP Libraries
+
+* NLTK
+
+## Machine Learning
+
+* Scikit-Learn
+
+## Data Handling
+
+* Pandas
+* NumPy
+
+## Model Persistence
+
+* Joblib
 
 ---
 
-## Phase 2: Basic Terminal Chatbot
+# Development Phases
 
-### Objective
+---
 
-Create a chatbot that can accept user input continuously.
+## Phase 1 - Project Setup ✅
 
-### Implementation
+Completed:
+
+* Git Repository Setup
+* VS Code Setup
+* Python Virtual Environment
+* Project Folder Structure
+
+---
+
+## Phase 2 - Basic Terminal Chatbot ✅
+
+Created:
 
 ```python
 while True:
-    user_input = input("You: ")
+    user_input = input("YOU: ")
 ```
 
-### Example
-
-```text
-You: Hello
-
-KDS: Hello
-```
-
-### Status
-
-✅ Completed
+Allows continuous user interaction.
 
 ---
 
-## Phase 3: Text Preprocessing
+## Phase 3 - NLP Preprocessing ✅
 
-### Objective
+### Lowercasing
 
-Normalize text before NLP processing.
-
-### Implementation
-
-```python
-text.lower()
-```
-
-### Example
-
-Input:
+Example:
 
 ```text
 AWS
 ```
 
-Output:
+↓
 
 ```text
 aws
 ```
 
-### Status
-
-✅ Completed
-
 ---
 
-## Phase 4: Tokenization
+### Tokenization
 
-### Objective
-
-Convert a sentence into individual tokens (words).
-
-### Library
-
-NLTK
-
-### Implementation
+Using:
 
 ```python
-word_tokenize(text)
+word_tokenize()
 ```
 
-### Example
-
-Input:
+Example:
 
 ```text
 I am learning NLP
 ```
 
-Output:
+↓
 
 ```python
 ['i', 'am', 'learning', 'nlp']
 ```
-
-### Status
-
-✅ Completed
 
 ---
 
-## Phase 5: Stop Word Removal
+### Stopword Removal
 
-### Objective
-
-Remove common words that do not contribute significant meaning.
-
-### Library
-
-NLTK Stopwords
-
-### Example
-
-Before:
+Example:
 
 ```python
 ['i', 'am', 'learning', 'nlp']
 ```
 
-After:
+↓
 
 ```python
 ['learning', 'nlp']
 ```
 
-### Status
-
-✅ Completed
-
 ---
 
-## Phase 6: Lemmatization
+### Lemmatization
 
-### Objective
-
-Convert words into their dictionary (root) form.
-
-### Library
-
-WordNetLemmatizer
-
-### Example
-
-Before:
+Example:
 
 ```python
 ['cars', 'running', 'roads']
 ```
 
-After:
+↓
 
 ```python
 ['car', 'run', 'road']
 ```
 
-### Status
-
-✅ Completed
-
 ---
 
-## Current NLP Pipeline
+# NLP Pipeline
 
 ```text
 User Input
-      ↓
+ ↓
 Lowercase
-      ↓
+ ↓
 Tokenization
-      ↓
+ ↓
 Stopword Removal
-      ↓
+ ↓
 Lemmatization
-```
-
-### Example
-
-Input:
-
-```text
-The cars are running on roads
-```
-
-Output:
-
-```python
-['car', 'run', 'road']
 ```
 
 ---
 
-## Phase 7: TF-IDF Vectorization
+## Phase 4 - TF-IDF Vectorization ✅
 
-### Objective
-
-Convert text into numerical vectors for machine learning.
-
-### Library
-
-Scikit-Learn
-
-### Component
+Implemented:
 
 ```python
 TfidfVectorizer()
 ```
 
-### Example
+Purpose:
 
-Input:
-
-```text
-car run road
-```
-
-Output:
-
-```python
-[0.41, 0.72, 0.18]
-```
-
-### Why?
-
-Machine learning algorithms cannot understand words directly.
-
-They require numerical features.
-
-### Status
-
-✅ Basic Implementation Completed
+Convert text into numerical vectors that Machine Learning algorithms can understand.
 
 ---
 
-# Current Project Flow
+## Phase 5 - Intent Dataset Creation ✅
 
-```text
-User Input
-      ↓
-Lowercase
-      ↓
-Tokenization
-      ↓
-Stopword Removal
-      ↓
-Lemmatization
-      ↓
-TF-IDF
-```
-
----
-
-# Upcoming Phases
-
-## Phase 8: Intent Dataset Creation
-
-### File
+Created:
 
 ```text
 data/intents.csv
 ```
 
-### Example
+Current intents:
+
+* greeting
+* goodbye
+* aws
+* devops
+* sports
+* thanks
+
+Dataset contains 70+ training examples.
+
+Example:
 
 ```csv
 sentence,intent
 
-Hi,greeting
 Hello,greeting
-Good morning,greeting
-
-Bye,goodbye
-Goodbye,goodbye
-
 What is AWS?,aws
-Explain ECS,aws
-
-What is Kubernetes?,devops
 Explain Docker,devops
+What is cricket?,sports
+Thank you,thanks
 ```
-
-### Purpose
-
-Teach the chatbot different categories (intents).
-
-### Status
-
-⬜ Pending
 
 ---
 
-## Phase 9: Model Training
+## Phase 6 - Model Training ✅
 
-### File
+Created:
 
 ```text
 src/train.py
 ```
 
-### Workflow
+Training Pipeline:
 
 ```text
-Dataset
-   ↓
+CSV Dataset
+ ↓
+Preprocessing
+ ↓
 TF-IDF
-   ↓
+ ↓
+Label Encoding
+ ↓
 Naive Bayes
-   ↓
-Train Model
-   ↓
+ ↓
+Model Training
+ ↓
 Save Model
 ```
 
-### Output
+Used:
 
-```text
-models/model.pkl
+```python
+MultinomialNB()
 ```
 
-### Status
+Generated Models:
 
-⬜ Pending
+```text
+models/
+│
+├── model.pkl
+├── tfidf.pkl
+└── label_encoder.pkl
+```
 
 ---
 
-## Phase 10: Intent Prediction
+## Phase 7 - Intent Prediction ✅
 
-### Workflow
+Created:
+
+```text
+src/predict.py
+```
+
+Workflow:
 
 ```text
 User Input
-      ↓
-Preprocessing
-      ↓
-TF-IDF
-      ↓
-Trained Model
-      ↓
-Intent Prediction
-```
-
-### Example
-
-Input:
-
-```text
-What is ECS?
-```
-
-Output:
-
-```text
-Intent = AWS
-```
-
-### Status
-
-⬜ Pending
-
----
-
-## Phase 11: AI Integration
-
-### Tools
-
-* OpenAI API
-* Gemini API
-
-### Workflow
-
-```text
-Intent Detection
-      ↓
-LLM
-      ↓
-Generate Response
-```
-
-### Status
-
-⬜ Pending
-
----
-
-## Phase 12: Database Integration
-
-### Database
-
-SQLite
-
-### Store
-
-* User Message
-* Bot Response
-* Timestamp
-
-### Status
-
-⬜ Pending
-
----
-
-## Phase 13: DevOps Deployment
-
-### Containerization
-
-Docker
-
-### CI/CD
-
-GitHub → Jenkins
-
-### Deployment
-
-AWS ECS
-
-### Monitoring
-
-CloudWatch
-
-### Status
-
-⬜ Pending
-
----
-
-# Final Architecture
-
-```text
-User
  ↓
-Preprocessing
+Load Model
+ ↓
+Predict Intent
+```
+
+Example:
+
+```text
+Hello
+```
+
+↓
+
+```text
+greeting
+```
+
+---
+
+## Phase 8 - Response Engine ✅
+
+Created:
+
+```text
+src/response_engine.py
+```
+
+Maps predicted intents to predefined responses.
+
+Example:
+
+```python
+{
+    "greeting": "Hello! How Can I Help You?",
+    "aws": "AWS is Amazon Web Services."
+}
+```
+
+---
+
+## Phase 9 - NLP Integration into Prediction ✅
+
+Integrated preprocessing modules into prediction pipeline.
+
+Workflow:
+
+```text
+Input
+ ↓
+Lowercase
  ↓
 Tokenization
  ↓
@@ -484,51 +389,182 @@ Lemmatization
  ↓
 TF-IDF
  ↓
-Naive Bayes
- ↓
-Intent Detection
- ↓
-OpenAI/Gemini
- ↓
-Response
- ↓
-SQLite
- ↓
-Docker
- ↓
-Jenkins
- ↓
-AWS ECS
+Prediction
 ```
 
 ---
 
-# Progress Tracker
+## Phase 10 - Confidence Score ✅
 
-| Phase                | Status |
-| -------------------- | ------ |
-| Project Setup        | ✅      |
-| Terminal Chatbot     | ✅      |
-| Lowercasing          | ✅      |
-| Tokenization         | ✅      |
-| Stopword Removal     | ✅      |
-| Lemmatization        | ✅      |
-| TF-IDF Basics        | ✅      |
-| Intent Dataset       | ⬜      |
-| Naive Bayes Training | ⬜      |
-| Intent Prediction    | ⬜      |
-| OpenAI Integration   | ⬜      |
-| SQLite               | ⬜      |
-| Docker               | ⬜      |
-| Jenkins              | ⬜      |
-| ECS Deployment       | ⬜      |
+Implemented:
+
+```python
+model.predict_proba()
+```
+
+Example Output:
+
+```text
+Intent: aws
+Confidence: 86%
+```
+
+Purpose:
+
+Determine how confident the model is before responding.
 
 ---
 
-## Current Completion
+## Phase 11 - Unknown Intent Handling ✅
 
-Approximately **35% Complete**
+Implemented threshold-based rejection.
 
-Next milestone:
+Example:
 
-**Create `data/intents.csv` and train the first Naive Bayes intent classification model.**
+```text
+Confidence < Threshold
+```
+
+↓
+
+```text
+Sorry, I didn't understand that.
+```
+
+Prevents random incorrect responses.
+
+---
+
+# Current Features
+
+✅ NLP Pipeline
+
+✅ TF-IDF Vectorization
+
+✅ Naive Bayes Intent Classification
+
+✅ Confidence Scoring
+
+✅ Unknown Intent Handling
+
+✅ Response Engine
+
+✅ Model Persistence
+
+---
+
+# Current Project Completion
+
+```text
+Project Completion ≈ 70%
+```
+
+---
+
+# Upcoming Development
+
+## Phase 12 - Unknown Intent Class
+
+Add:
+
+```csv
+I love pizza,unknown
+Banana cloud monkey,unknown
+Tell me a joke,unknown
+Random text,unknown
+```
+
+Purpose:
+
+Improve handling of out-of-domain questions.
+
+---
+
+## Phase 13 - OpenAI / Gemini Integration
+
+Future Architecture:
+
+```text
+User
+ ↓
+NLP
+ ↓
+TF-IDF
+ ↓
+Naive Bayes
+ ↓
+Intent Detection
+ ↓
+Known Intent?
+     |
+ ┌───┴────┐
+ │        │
+Yes       No
+ │        │
+ ▼        ▼
+Response  OpenAI/Gemini
+Engine    API
+ │        │
+ └───┬────┘
+     ▼
+Final Response
+```
+
+This transforms the project into a Hybrid AI Chatbot.
+
+---
+
+# Future Enhancements
+
+## Database
+
+* SQLite
+* Conversation History
+* User Sessions
+* Chat Memory
+
+---
+
+## DevOps
+
+### Docker
+
+Containerize the chatbot.
+
+### Jenkins
+
+Automate CI/CD pipeline.
+
+### AWS ECR
+
+Store Docker images.
+
+### AWS ECS
+
+Deploy chatbot containers.
+
+### CloudWatch
+
+Centralized logging and monitoring.
+
+---
+
+# Final Goal
+
+Build a production-style Hybrid AI Chatbot demonstrating:
+
+* NLP
+* Machine Learning
+* Intent Classification
+* AI Integration
+* Database Management
+* CI/CD
+* Cloud Deployment
+
+---
+
+# Author
+
+Karop Dezosa S
+
+Cloud & DevOps Engineer | NLP & AI Enthusiast
