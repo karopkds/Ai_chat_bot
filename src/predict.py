@@ -3,6 +3,7 @@ from response_engine import get_response
 from preprocessing import preprocess
 from stop_words_removal import remove_stopwords
 from lemmatizer import lemmatize
+from llama_ai import ask_ask
 
 
 model = joblib.load("models/model.pkl")
@@ -37,11 +38,12 @@ while True:
     intent = label_encoder.inverse_transform(prediction)
     probabilities = model.predict_proba(vectorization_final)
     confidence = max(probabilities[0])
-    print("Intent:", intent[0])
-    print("Confidence:", round(confidence * 100, 2), "%")
+       
 
     if confidence < 0.60:
-        print("KDS_BOT: Sorry, I'm Did'nt got you ")
+        print("KDS_BOT: Hmm Let me Think........")
+        ai_response = ask_ask(user_input)
+        print("KDS_BOT: ", ai_response)
         continue
 
     

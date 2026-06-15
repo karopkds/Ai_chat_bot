@@ -1,8 +1,6 @@
 import nltk
 from nltk.corpus import stopwords
 
-nltk.download('stopwords')
-
 def remove_stopwords(lower_case_text_tokenize):
     stopswords = set(stopwords.words('english'))
 

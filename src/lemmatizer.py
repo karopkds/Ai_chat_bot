@@ -3,8 +3,6 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 
 
-nltk.download('wordnet')
-
 def get_pos(word):
     tag = nltk.pos_tag([word])[0][1][0].upper()
     tag_map = {'J': wordnet.ADJ, 'V': wordnet.VERB, 'N': wordnet.NOUN, 'R': wordnet.ADV}
