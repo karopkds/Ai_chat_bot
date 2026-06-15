@@ -1,0 +1,17 @@
+sentence,intent
+Hi,greeting
+Hello,greeting
+Good morning,greeting
+Hey,greeting
+Bye,goodbye
+Goodbye,goodbye
+See you later,goodbye
+What is AWS?,aws
+Explain ECS,aws
+What is EC2?,aws
+What is Lambda?,aws
+What is Kubernetes?,devops
+Explain Docker,devops
+What is Jenkins?,devops
+Thank you,thanks
+Thanks,thanks
