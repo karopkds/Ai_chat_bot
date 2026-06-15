@@ -2,12 +2,31 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.calibration import CalibratedClassifierCV 
+from preprocessing import preprocess
+from stop_words_removal import remove_stopwords
+from lemmatizer import lemmatize
 import joblib
 
 df = pd.read_csv("data/intents.csv")
 # Assigning X and Y access
+processed_sentences = []
 
-X = df["sentence"]
+for sentence in df["sentence"]:
+
+    tokens = preprocess(sentence)
+
+    filtered = remove_stopwords(tokens)
+
+    lemmatized = lemmatize(filtered)
+
+    processed_text = " ".join(lemmatized)
+
+    processed_sentences.append(processed_text)
+
+X = processed_sentences
+
+
 Y = df["intent"]
 
 # Now i'm converting into vector formate so ML can understand
@@ -24,6 +43,7 @@ print(Y_encoded)
 # We are using Navie Byes MultinimialNB (Best for Spam Detection, Sentimental Analysis, Email Categorization)
 
 model = MultinomialNB()
+model = CalibratedClassifierCV(model, cv=3, method='isotonic')
 model.fit(X_tfidf, Y_encoded)
 
 # NOW WE ARE SAVING THE MODEL Traing data. So we are using joblib Libarrary

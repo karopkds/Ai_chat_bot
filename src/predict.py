@@ -32,7 +32,19 @@ while True:
 
     prediction = model.predict(vectorization_final)
 
+
+    # Adding confidence score to predict the correct output
     intent = label_encoder.inverse_transform(prediction)
+    probabilities = model.predict_proba(vectorization_final)
+    confidence = max(probabilities[0])
+    print("Intent:", intent[0])
+    print("Confidence:", round(confidence * 100, 2), "%")
+
+    if confidence < 0.60:
+        print("KDS_BOT: Sorry, I'm Did'nt got you ")
+        continue
+
+    
 
 
     response = get_response(intent[0])

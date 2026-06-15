@@ -3,28 +3,91 @@ Hi,greeting
 Hello,greeting
 Good morning,greeting
 Hey,greeting
+Hey there,greeting
+Hello there,greeting
+Good evening,greeting
+Howdy,greeting
+Greetings,greeting
+What's up,greeting
+Hi bot,greeting
+Hello bot,greeting
+Yo,greeting
+Sup,greeting
+Hi there,greeting
 Bye,goodbye
 Goodbye,goodbye
 See you later,goodbye
+See ya,goodbye
+Bye bye,goodbye
+Take care,goodbye
+Talk to you later,goodbye
+Later,goodbye
+Good night,goodbye
+Catch you later,goodbye
 What is AWS?,aws
 Explain ECS,aws
 What is EC2?,aws
 What is Lambda?,aws
+Tell me about aws,aws
+AWS services,aws
+Amazon web services,aws
+What does AWS do,aws
+AWS cloud,aws
+Explain AWS services,aws
+What is S3?,aws
+AWS storage,aws
+What is IAM?,aws
+AWS compute,aws
+AWS networking,aws
 What is Kubernetes?,devops
 Explain Docker,devops
 What is Jenkins?,devops
+Terraform,devops
+What is CI CD,devops
+Explain devops,devops
+What is devops,devops
+DevOps tools,devops
+What is Ansible,devops
+Explain pipeline,devops
+What is Git,devops
+Version control,devops
+What is Helm,devops
+Container orchestration,devops
+Infrastructure as code,devops
 Explain cricket,sports
 Explain bat,sports
-explain ball,sports
+Explain ball,sports
+What is football,sports
+Tell me about sports,sports
+What is cricket,sports
+Sports news,sports
+What is basketball,sports
+Explain tennis,sports
+What is baseball,sports
+Tell me about football,sports
+Sports update,sports
+What is rugby,sports
+Explain hockey,sports
+Tell me about cricket,sports
 Thank you,thanks
 Thanks,thanks
-thankyou,thanks
-thx,thanks
-thanks a lot,thanks
-many thanks,thanks
-tell me about aws,aws
-aws services,aws
-amazon web services,aws
-docker,devops
-jenkins,devops
-terraform,devops
+Thankyou,thanks
+Thx,thanks
+Thanks a lot,thanks
+Many thanks,thanks
+Much appreciated,thanks
+Thank you so much,thanks
+Cheers,thanks
+Thanks for help,thanks
+That was helpful,thanks
+Appreciate it,thanks
+Thank you very much,thanks
+Great help thanks,thanks
+Really helpful thanks,thanks
+I love pizza,unknown
+Who is Messi,unknown
+Tell me a joke,unknown
+Banana cloud monkey,unknown
+Random text,unknown
+What is the weather,unknown
+How old are you,unknown
