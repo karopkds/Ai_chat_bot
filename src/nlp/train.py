@@ -31,4 +31,8 @@ model.fit(X_tfidf, Y_encoded)
 
 joblib.dump(model, "models/model.pkl")
 
+joblib.dump(vectorizing_Traning, "models/tfidf.pkl")
+
+joblib.dump(label_encoder, "models/label_encoder.pkl")
+
 print("\nTraining Completed Successfully")
