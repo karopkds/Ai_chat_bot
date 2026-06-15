@@ -1,4 +1,5 @@
 import joblib
+from response_engine import get_response
 
 model = joblib.load("models/model.pkl")
 
@@ -19,4 +20,7 @@ while True:
 
     intent = label_encoder.inverse_transform(prediction)
 
-    print("Prediction Indentend: ", intent[0])
+
+    response = get_response(intent[0])
+    
+    print("KDS_BOT: ", response)
