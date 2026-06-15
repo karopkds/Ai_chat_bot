@@ -1,5 +1,5 @@
 # NLP AI Chatbot - Complete End-to-End Roadmap
-
+![archtechure](architech.png)
 ## Project Objective
 
 Build a production-ready NLP chatbot that:
