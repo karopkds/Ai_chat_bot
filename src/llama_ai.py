@@ -1,15 +1,22 @@
-from groq import Groq
-from config import GEMINI_API_KEY
+from dotenv import load_dotenv
+load_dotenv()
 
-client = Groq(api_key=GEMINI_API_KEY)  # Groq keys start with gsk_
+from groq import Groq
+from config import GROQ_API_KEY, LLM_MODEL
+
+client = Groq(api_key=GROQ_API_KEY)
 
 
 
 def ask_ask(question):
-
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages= [{"role": "user", "content" : question}]
+        model=LLM_MODEL,
+        messages=[
+            {
+                "role": "user",
+                "content": question
+            }
+        ]
     )
 
     return response.choices[0].message.content

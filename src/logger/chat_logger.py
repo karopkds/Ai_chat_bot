@@ -1,6 +1,7 @@
 import csv
 from datetime import datetime
-from pathlib import Path
+
+from config import CHAT_LOG_FILE
 
 class ChatLogger:
     """
@@ -8,7 +9,7 @@ class ChatLogger:
     """
 
     def __init__(self):
-        self.log_file = Path("logs/chat_history.csv")
+        self.log_file = CHAT_LOG_FILE
 
         if not self.log_file.exists():
             with open(self.log_file, mode="w", newline="", encoding="utf-8") as file:

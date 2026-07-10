@@ -4,13 +4,25 @@ from preprocessing import preprocess
 from stop_words_removal import remove_stopwords
 from lemmatizer import lemmatize
 from llama_ai import ask_ask
+from logger.chat_logger import ChatLogger
 
 
-model = joblib.load("models/model.pkl")
 
-vectorizer = joblib.load("models/tfidf.pkl")
 
-label_encoder = joblib.load("models/label_encoder.pkl")
+from config import (
+    MODEL_FILE,
+    TFIDF_FILE,
+    LABEL_ENCODER_FILE,
+    CONFIDENCE_THRESHOLD,
+)
+
+model = joblib.load(MODEL_FILE)
+
+vectorizer = joblib.load(TFIDF_FILE)
+
+label_encoder = joblib.load(LABEL_ENCODER_FILE)
+
+logger = ChatLogger()
 
 while True:
 
@@ -40,10 +52,18 @@ while True:
     confidence = max(probabilities[0])
        
 
-    if confidence < 0.60:
+    if confidence < CONFIDENCE_THRESHOLD:
         print("KDS_BOT: Hmm Let me Think........")
         ai_response = ask_ask(user_input)
         print("KDS_BOT: ", ai_response)
+       
+        logger.log_chat(
+            user_input=user_input,
+            predicted_intent="unknown",
+            confidence=confidence,
+            response_source="llm",
+            bot_response=ai_response,
+        )
         continue
 
     
