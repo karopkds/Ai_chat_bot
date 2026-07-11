@@ -2,7 +2,7 @@ import os
 import sys
 import traceback
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
 def _find_project_root(start_dir: str) -> str:
@@ -189,6 +189,22 @@ def intents():
     except Exception:
         known = []
     return jsonify({"intents": known})
+
+
+@app.route("/")
+def home():
+    return send_from_directory(os.path.join(PROJECT_ROOT, "src"), "index.html")
+
+
+@app.route("/api")
+def api_info():
+    return jsonify({
+        "message": "AI Chatbot API",
+        "version": "1.0",
+        "health": "/api/health",
+        "chat": "/api/chat",
+        "intents": "/api/intents"
+    })
 
 
 if __name__ == "__main__":
