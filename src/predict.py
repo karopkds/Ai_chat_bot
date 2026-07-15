@@ -5,6 +5,9 @@ from stop_words_removal import remove_stopwords
 from lemmatizer import lemmatize
 from llama_ai import ask_ask
 from logger.chat_logger import ChatLogger
+from conversation_memory import ConversationMemory
+from decision_engine import is_contextual_followup
+
 
 
 
@@ -23,14 +26,58 @@ vectorizer = joblib.load(TFIDF_FILE)
 label_encoder = joblib.load(LABEL_ENCODER_FILE)
 
 logger = ChatLogger()
+memory = ConversationMemory() #This creates one memory object for the current chatbot session.
 
 while True:
 
     user_input =input("YOU: ")
-
+    
     if user_input.lower() == "exit":
         print("GOODBYE! See you Soon :)")
         break
+    
+    is_follow_up = is_contextual_followup(
+        user_input=user_input,
+        memory=memory,
+    )
+
+    print(f"[DEBUG] Follow Up: {is_follow_up}")
+
+    if is_follow_up:
+
+        prompt = f"""
+    The user is continuing an existing conversation.
+
+    Topic:
+    {memory.last_intent}
+
+    Original Question:
+    {memory.last_user_message}
+
+    Previous Answer:
+    {memory.last_bot_response}
+
+    The user now asks:
+
+    {user_input}
+
+    Continue the explanation naturally.
+    Do not repeat the previous answer.
+    Give more detail and practical examples.
+    """
+
+        ai_response = ask_ask(prompt)
+
+        print("KDS_BOT:", ai_response)
+
+        memory.update(
+            intent=memory.last_intent,
+            user_message=user_input,
+            bot_response=ai_response,
+        )
+
+        continue
+
 
     #NLP PreProcessing
     tokenization_words_final = preprocess(user_input)
@@ -63,6 +110,12 @@ while True:
         print("KDS_BOT: Hmm Let me Think........")
         ai_response = ask_ask(user_input)
         print("KDS_BOT: ", ai_response)
+        
+        memory.update(
+            intent="unknown",
+            user_message=user_input,
+            bot_response=ai_response
+        )
        
         logger.log_chat(
             user_input=user_input,
@@ -71,8 +124,15 @@ while True:
             response_source="llm",
             bot_response=ai_response,
         )
+        
         continue
 
     response = get_response(intent)
 
     print("KDS_BOT:", response)
+
+    memory.update(
+        intent=intent,
+        user_message=user_input,
+        bot_response=response
+    )
