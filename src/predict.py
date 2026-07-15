@@ -43,14 +43,21 @@ while True:
 
     vectorization_final = vectorizer.transform([processed_text])
 
-    prediction = model.predict(vectorization_final)
+    #prediction = model.predict(vectorization_final)
 
 
     # Adding confidence score to predict the correct output
-    intent = label_encoder.inverse_transform(prediction)
+    #intent = label_encoder.inverse_transform(prediction)
+    #probabilities = model.predict_proba(vectorization_final)
+    #confidence = max(probabilities[0])
     probabilities = model.predict_proba(vectorization_final)
-    confidence = max(probabilities[0])
-       
+
+    predicted_index = probabilities[0].argmax()
+
+    confidence = probabilities[0][predicted_index]
+
+    intent = label_encoder.inverse_transform([predicted_index])[0]
+        
 
     if confidence < CONFIDENCE_THRESHOLD:
         print("KDS_BOT: Hmm Let me Think........")
@@ -66,9 +73,6 @@ while True:
         )
         continue
 
-    
+    response = get_response(intent)
 
-
-    response = get_response(intent[0])
-   
-    print("KDS_BOT: ", response)
+    print("KDS_BOT:", response)
